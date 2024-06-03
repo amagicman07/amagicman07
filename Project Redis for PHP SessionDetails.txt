@@ -1,0 +1,70 @@
+     				Project 
+Setting up Redis for PHP sessions in a LEMP/LAMP stack
+
+1. Linux - Any Linux based operating system
+2. Apache server - Apache is an open-source webserver
+
+A. Installing Apache and allowing it through the firewall
+----------------------------------------------------------
+Commands
+1. sudo apt update
+2. sudo apt upgrade
+3. sudo apt install apache2
+4. sudo systemctl status apache2.service ( to show apache server active or not)
+5. sudo systemctl enable apache2.service ( when reboot system apache server service automatically start)
+Note:
+You can now go to the server URL Public (IP address) and the apache2 default page will be displayed on the screen
+
+6. vim /var/www/html/index.html (Default availabe )
+7. cd /var/www/html/
+8. ll
+9. mv index.html index.html_back
+10. rm -rf index.html (to remove default html file)
+11. vim index.html ( Write intro something to show in server ) to make custome page
+
+B. Installing Redis Server: 
+1. sudo apt update
+   sudo apt install redis-server
+
+2. sudo systemctl status redis-server.service ( to show redis server active or not)
+   sudo systemctl enable redis-server.service ( when reboot system apache server service automatically start)
+
+C. Install PHP Redis Extension:
+1. -sudo apt update
+   -sudo apt install php-redis
+
+D. Update PHP Session Configuration:
+1. Locate the PHP configuration file (php.ini). 
+  - locations are /etc/php/8.1/apache2/php.ini for Apache
+  - locations are /etc/php/8.1/fpm/php.ini for PHP-FPM.( first Install php-fpm commands *sudo apt install php-fpm )
+
+2.Configure PHP to use Redis for session storage by adding or modifying the following lines in php.ini:
+  -session.save_handler = redis
+  -session.save_path = "tcp://<redis_server_ip>:6379"
+  Replace <redis_server_ip> with the IP address or hostname of your Redis server.
+
+E. Restart Services:
+  -sudo systemctl restart apache2
+  -sudo systemctl restart php8.1-fpm
+
+F. Test Configuration:
+1.) Go to index.html file type
+- cd /var/www/html
+- ll
+- sudo vim phpinfo.php ( For ubuntu )
+  write code
+
+ <?php
+ session_start();
+ $_SESSION['test'] = 'Hello, Redis!';
+ echo $_SESSION['test'];
+ ?>
+:wq ( to save the file)
+
+2. In URL tye Public Ip adress/phpinfo.php  ( Then php page will show or working)
+
+The LAMP server will completed 
+
+
+   
+
