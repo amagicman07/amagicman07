@@ -1,0 +1,74 @@
+			Project 01
+
+Installing LAMP stack on Ubuntu  
+
+1. Linux - Any Linux based operating system
+2. Apache server - Apache is an open-source webserver
+3. MySQL - MySQL database
+4. PHP - PHP as a server-side programming language
+
+A. Installing Apache and allowing it through the firewall
+----------------------------------------------------------
+Commands
+1. sudo apt update
+2. sudo apt upgrade
+3. sudo apt install apache2
+4. sudo systemctl status apache2.service ( to show apache server active or not)
+5. sudo systemctl enable apache2.service ( when reboot system apache server service automatically start)
+Note:
+You can now go to the server URL Public (IP address) and the apache2 default page will be displayed on the screen
+
+6. vim /var/www/html/index.html (Default availabe )
+7. cd /var/www/html/
+8. ll
+9. mv index.html index.html_back
+10. rm -rf index.html (to remove default html file)
+11. vim index.html ( Write intro something to show in server ) to make custome page
+
+
+
+B. Installing MySQL or Mariadb on Ubuntu
+------------------------------
+Commands
+
+1. sudo apt install mysql-server or mariadb-server mariadb-clent -y ( Install MySQL or Mariadb  on ubuntu )
+2. sudo systemctl status mysql.service or mariadb.service ( to show mariadb server active or not)
+3. sudo systemctl enable mysql.service or mariadb.service( when reboot system mysql-server or mariadb-server service automatically start)
+4. sudo mysql (To login to MySQL console)
+5. exit (To exit the MySQL console )
+
+C. Installing PHP
+------------------------------
+commands
+
+1. sudo apt install php libapache2-mod-php php-mysql ( Install PHP )
+
+This will install the following 3 packages:
+
+a.) php -  installs PHP
+b.) libapache2-mod-php - Used by apache to handle PHP files
+c.) php-mysql - PHP module that allows PHP to connect to MySQL 
+
+2. php -v (Confirm the PHP installation )
+
+To change anything in the index.html file 
+commands 
+1.) Go to index.html file type
+- cd /var/www/html
+- ll
+- sudo vim phpinfo.php ( For ubuntu )
+  write code
+  <?php
+  phpinfo();
+  :wq ( to save the file)
+
+2. In URL tye Public Ip adress/phpinfo.php  ( Then php page will show or working)
+
+The LAMP server will completed 
+
+
+
+
+
+
+
